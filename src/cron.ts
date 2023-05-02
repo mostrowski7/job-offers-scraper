@@ -1,11 +1,10 @@
-import cron from 'node-cron'
-
-const task = () => {
-    console.log('Task running')
-}
+import cron from 'node-cron';
+import addJobToQueue from './queue';
 
 const schedule = () => {
-    cron.schedule('*/1 * * * *', task)
-}
+  console.log(`Cron running`);
 
-export default schedule
+  cron.schedule('*/10 * * * * *', async () => await addJobToQueue('task'));
+};
+
+export default schedule;
